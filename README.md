@@ -1,2 +1,3 @@
 # asteroids
-Asteroid game built in python using OOP and PyGame
+Asteroid game built in python using OOP and PyGame.
+Testing commit.
