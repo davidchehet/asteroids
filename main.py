@@ -7,7 +7,17 @@ from shot import *
 
 
 def main():
-    pygame.init
+    pygame.init()
+    pygame.mixer.init()  # Initialize the mixer module
+
+    # Load music in
+    try:
+        pygame.mixer.music.load('./assets/audio/OrbitalColossus.mp3')
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.3)
+    except:
+        print("Could not connect to music file.")
+    
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
@@ -43,8 +53,13 @@ def main():
             for bullet in shots:
                 if asteroid.check_collision(bullet):
                     bullet.kill()
-                    print(bullet in shots)
+                    # Sound effect of asteroid explosion
+                    explosion = pygame.mixer.Sound('./assets/audio/explosion.wav')
+                    explosion.set_volume(0.2)
+                    explosion.play()
+                    # Split into smaller asteroids
                     asteroid.split()
+                    
 
             if player.check_collision(asteroid):
                 print("Game over!")

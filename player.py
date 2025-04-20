@@ -49,5 +49,10 @@ class Player(CircleShape):
             self.timer = PLAYER_SHOOT_COOLDOWN
             new_shot = Shot(self.position.x, self.position.y) # Using self.x/y for player position
             new_shot.velocity = (pygame.Vector2(0, 1).rotate(self.rotation)) * PLAYER_SHOOT_SPEED
+            
+            # Bullet noise
+            laser_sound = pygame.mixer.Sound('./assets/audio/laserfire02.ogg')
+            laser_sound.play()
+
             self.shots_group.add(new_shot)
         
